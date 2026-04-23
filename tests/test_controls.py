@@ -27,6 +27,18 @@ def test_operator_l2_task_creates_approval(tmp_path, monkeypatch):
     assert approvals[0].id == response.approval_id
 
 
+def test_operator_l3_task_creates_approval(tmp_path, monkeypatch):
+    service = _new_service(tmp_path, monkeypatch)
+
+    response = service.execute_task_with_controls(
+        TaskExecutionRequest(provider="aws", task="root_cause_analysis", resource_id="i-rca"),
+        AuthContext(role="operator", key_fingerprint="op-004"),
+    )
+
+    assert response.status == "pending_approval"
+    assert response.approval_id
+
+
 def test_admin_review_can_execute_approved_task(tmp_path, monkeypatch):
     service = _new_service(tmp_path, monkeypatch)
     pending = service.execute_task_with_controls(

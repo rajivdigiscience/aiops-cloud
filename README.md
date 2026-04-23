@@ -9,7 +9,7 @@ It now includes all three requested tracks:
 
 ## Core capabilities
 
-- Unified runbook API for L1/L2 tasks across cloud providers
+- Unified runbook API for L1/L2/L3 tasks across cloud providers
 - Pluggable provider adapters under `src/aiops_hub/providers`
 - AI-assisted incident triage with heuristic fallback and optional OpenAI enrichment
 - Role-based access via API keys (`viewer`, `operator`, `admin`)
@@ -28,17 +28,39 @@ It now includes all three requested tracks:
 - `POST /approvals/{approval_id}/review`
 - `GET /audit/logs`
 
-## L1/L2 tasks
+## Engineer activity matrix (L1/L2/L3)
 
 ### L1
 - `check_instance_status`
 - `check_storage_health`
 - `check_network_health`
 - `list_recent_events`
+- `collect_ticket_context`
+- `verify_backup_job_status`
+- `check_service_error_budget`
+- `validate_ssl_certificate_expiry`
 
 ### L2
 - `restart_instance`
 - `diagnostic_bundle`
+- `scale_instance_group`
+- `isolate_unhealthy_node`
+- `flush_stuck_deploy`
+- `rotate_service_credentials`
+
+### L3
+- `root_cause_analysis`
+- `execute_failover_plan`
+- `disaster_recovery_drill`
+- `security_forensics_workflow`
+- `cost_optimization_review`
+- `post_incident_review`
+
+## Typical engineering activities by level
+
+- `L1`: alert triage, health checks, ticket enrichment, backup verification, first-response diagnostics.
+- `L2`: controlled remediation, targeted recovery actions, deploy rollback/repair, credential rotations.
+- `L3`: deep RCA, resilience architecture decisions, failover/disaster workflows, security forensics, preventive design changes.
 
 ## Local backend quick start
 

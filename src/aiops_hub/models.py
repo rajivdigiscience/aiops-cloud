@@ -3,7 +3,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field
 
 ProviderName = Literal["aws", "azure", "gcp"]
-TaskCategory = Literal["L1", "L2"]
+TaskCategory = Literal["L1", "L2", "L3"]
 RoleName = Literal["viewer", "operator", "admin"]
 
 

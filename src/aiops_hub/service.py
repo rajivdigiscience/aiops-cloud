@@ -40,11 +40,11 @@ class AIOpsService:
         if auth.role == "viewer":
             raise PermissionError("viewer role cannot execute tasks")
 
-        if definition.category == "L2" and auth.role != "admin":
+        if definition.category in {"L2", "L3"} and auth.role != "admin":
             approval = self.state_store.create_approval(
                 request=request,
                 auth=auth,
-                reason="L2 task requested by non-admin role",
+                reason=f"{definition.category} task requested by non-admin role",
             )
             self.state_store.record_audit(
                 auth=auth,

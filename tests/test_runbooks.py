@@ -40,3 +40,14 @@ def test_execute_diagnostic_bundle_success():
 
     assert result.status == "success"
     assert result.output["events"]["limit"] == 3
+
+
+def test_execute_l3_manual_runbook_success():
+    provider = DummyProvider()
+    req = TaskExecutionRequest(provider="aws", task="root_cause_analysis", resource_id="i-rca")
+
+    result = execute_task(provider, req)
+
+    assert result.status == "success"
+    assert result.output["automation_mode"] == "human_in_the_loop"
+    assert len(result.output["manual_steps"]) >= 3
