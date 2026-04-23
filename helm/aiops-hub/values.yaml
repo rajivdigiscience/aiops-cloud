@@ -1,0 +1,50 @@
+replicaCount: 1
+
+image:
+  repository: aiops-hub
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+app:
+  environment: prod
+  commandTimeoutSeconds: 40
+  enableOpenAIEnrichment: true
+  openaiModel: gpt-4.1-mini
+  requireApiKey: true
+  stateDbPath: /app/data/aiops_hub.db
+
+keys:
+  admin: admin-change-me
+  operator: operator-change-me
+  viewer: viewer-change-me
+
+openai:
+  apiKey: ""
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+persistence:
+  enabled: false
+  size: 2Gi
+  storageClassName: ""
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: aiops.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []

@@ -1,0 +1,10 @@
+AI Ops Hub is deployed.
+
+1. Get service endpoint:
+   kubectl get svc {{ include "aiops-hub.fullname" . }} -n {{ .Release.Namespace }}
+
+2. Port-forward locally:
+   kubectl port-forward svc/{{ include "aiops-hub.fullname" . }} 8080:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+
+3. Verify health:
+   curl http://127.0.0.1:8080/health

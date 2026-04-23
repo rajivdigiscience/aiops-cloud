@@ -1,0 +1,261 @@
+:root {
+  --bg: #f4f5ef;
+  --ink: #141414;
+  --panel: rgba(255, 255, 255, 0.78);
+  --line: #1e1e1e;
+  --accent: #0f7a5f;
+  --accent-2: #e3642b;
+  --danger: #b00020;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #ffe0c7 0%, transparent 35%),
+    radial-gradient(circle at 90% 85%, #d4f9ef 0%, transparent 40%),
+    var(--bg);
+}
+
+.shell {
+  min-height: 100vh;
+  padding: 2.2rem 1rem 3rem;
+  width: min(1150px, 96vw);
+  margin: 0 auto;
+  position: relative;
+}
+
+.bg-orb {
+  position: fixed;
+  width: 330px;
+  height: 330px;
+  border-radius: 999px;
+  filter: blur(55px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 9s ease-in-out infinite;
+}
+
+.orb-a {
+  background: #ffb089;
+  top: -80px;
+  left: -100px;
+}
+
+.orb-b {
+  background: #7ce0c5;
+  right: -110px;
+  bottom: -90px;
+  animation-delay: 2s;
+}
+
+.topbar,
+.card,
+.tabs,
+.error {
+  position: relative;
+  z-index: 2;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 0.01em;
+}
+
+.topbar p {
+  margin: 0.5rem 0 1.2rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.95rem;
+}
+
+.connection {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  align-items: end;
+}
+
+.card {
+  margin-top: 0.9rem;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  backdrop-filter: blur(5px);
+  padding: 1rem;
+  box-shadow: 6px 6px 0 #00000020;
+  animation: reveal 400ms ease;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1rem;
+}
+
+.tabs {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  border: 2px solid var(--line);
+  background: #ffffffd4;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.tab-active {
+  background: var(--accent);
+  color: white;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+input,
+select,
+textarea,
+button,
+pre,
+table {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 2px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.9rem;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+button {
+  border: 2px solid var(--line);
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+pre {
+  margin: 0;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: #171717;
+  color: #f2f2f2;
+  overflow: auto;
+  max-height: 430px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  padding: 0.65rem;
+  font-size: 0.84rem;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+.actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.actions button:last-child {
+  background: var(--danger);
+}
+
+.error {
+  margin-top: 1rem;
+  border: 2px solid var(--danger);
+  background: #ffe5ea;
+  color: #6a0016;
+  border-radius: 12px;
+  padding: 0.75rem;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(18px, -15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .connection {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
+}

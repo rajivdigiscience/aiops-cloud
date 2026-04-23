@@ -1,0 +1,6 @@
+apiVersion: v2
+name: aiops-hub
+description: Plug-and-play multi-cloud AI Ops API
+type: application
+version: 0.1.0
+appVersion: "0.2.0"
